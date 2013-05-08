@@ -1,2 +1,3 @@
-twitter_oauth
+sidekiqTweets
 =============
+@fmackojc and @patscan
