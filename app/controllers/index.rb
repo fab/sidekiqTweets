@@ -24,11 +24,20 @@ end
 
 post '/tweet' do
   user = User.find(session[:user_id])
-  user.tweet(params[:tweet])
-  puts "#{params[:tweet]} was sent"
-  erb :index
+  @job_id = user.tweet(params[:tweet])
+  # puts @job_id
+  # erb :index
+end
+
+get '/status/:job_id' do
+  content_type :json
+
+  job_is_complete(params[:job_id]).to_json
 end
 
 # this command runs the siqekiq server
 # $ bundle exec sidekiq -r./config/environment.rb
 
+# user posts a tweet
+# there will be an ajax call every 10 seconds to '/status/:job_id'
+# when the server response is true we'll display a pop with your tweet was sent

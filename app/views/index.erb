@@ -21,4 +21,8 @@
     <button><a href="/sign_in">Sign In with Twitter</a></button>
   <% end %>
   
+  <% if @job_id %>
+    <input type='hidden' id='jid' value='<%= @job_id %>'>
+  <% end %>
+
 </div>
