@@ -21,12 +21,12 @@ $(document).ready(function() {
       url: '/tweet',
       data: data
     }).done(function(response) {
-      console.log("got here");
-      console.log(response);
+      // console.log("got here");
+      // console.log(response);
       var jobId = response;
-      console.log(jobId);
+      // console.log(jobId);
       var jobIsDone = false;
-      //while (jobIsDone === false) {
+      // while (jobIsDone === false) {
       for (var i=0; i<10; i++) {
         // console.log(ajaxCall);
         setTimeout(ajaxCall(jobId), 1000);
