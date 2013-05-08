@@ -28,10 +28,13 @@ end
 
 post '/tweet' do
   user = User.find(session[:user_id])
-  p user
   t_user = Twitter::Client.new(oauth_token: user.oauth_token, oauth_token_secret: user.oauth_secret)
-  p t_user
-  t_user.update(params[:tweet])
-  puts "#{params[:tweet]} was sent"
+  tweet = Tweet.create(:status => params[:tweet], :user_id => session[:user_id])
+  t_user.update(tweet.status)
+  puts "#{tweet.status} was sent"
   erb :index
 end
+
+# this command runs the siqekiq server
+# $ bundle exec sidekiq -r./config/environment.rb
+
