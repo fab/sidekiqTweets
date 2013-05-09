@@ -1,14 +1,15 @@
-ajaxCall = function(jobId) {
-  $.ajax({
-    type: 'get',
-    url: '/status/' + jobId
-  }).done(function(response){
-    console.log(response);
-    if (response === true) {
-      jobIsDone = true;
-      alert("Your tweet was sent!");
-    }
+var ajaxCall = function(jobId) {
+  var timer = setInterval(function(){
+    console.log(jobId);
+    $.ajax({
+      type: 'get',
+      url: '/status/' + jobId
+    }).done(function(response){
+    // show a spinner
+    clearInterval(timer);
+    alert("Your tweet was sent!");
   });
+  }, 1000);
 };
 
 $(document).ready(function() {
@@ -20,17 +21,6 @@ $(document).ready(function() {
       type: 'post',
       url: '/tweet',
       data: data
-    }).done(function(response) {
-      // console.log("got here");
-      // console.log(response);
-      var jobId = response;
-      // console.log(jobId);
-      var jobIsDone = false;
-      // while (jobIsDone === false) {
-      for (var i=0; i<10; i++) {
-        // console.log(ajaxCall);
-        setTimeout(ajaxCall(jobId), 1000);
-      }
-    });
+    }).done(ajaxCall);
   });
 });

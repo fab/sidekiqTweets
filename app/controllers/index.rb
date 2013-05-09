@@ -25,14 +25,10 @@ end
 post '/tweet' do
   user = User.find(session[:user_id])
   @job_id = user.tweet(params[:tweet])
-  # puts @job_id
-  # erb :index
 end
 
 get '/status/:job_id' do
-  content_type :json
-
-  job_is_complete(params[:job_id]).to_json
+  job_is_complete(params[:job_id])
 end
 
 # this command runs the siqekiq server
