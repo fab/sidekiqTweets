@@ -10,6 +10,7 @@ var ajaxCall = function(jobId) {
     if (response === 'true') {
       clearInterval(timer);
       $('#spinner').hide();
+      $("input[name='tweet']").val('');
       $('form').show();
       alert("Your tweet was sent!");
     }
@@ -22,7 +23,6 @@ $(document).ready(function() {
   $('form').on('submit', function(e){
     e.preventDefault();
     $('form').hide();
-    $('#tweet_text').val('');
     $('#spinner').show();
     var data = $(this).serialize();
     console.log(data);

@@ -3,11 +3,12 @@
   
 
   <% if session[:user_id] %>
+    Welcome, <%= @t_user.user.name %>!<br/>
+    <img src='<%= @t_user.user.profile_image_url %>'>
     <div>
-      
       <p>
         <form method='post' action='/tweet'>
-          <input id='tweet_text' type='text' placeholder='Your Tweet' name='tweet'>
+          <input type='text' placeholder='Your Tweet' name='tweet'>
           <input type='submit' value='Send a Tweet'>
         </form>
       </p>

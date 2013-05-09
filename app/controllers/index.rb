@@ -1,4 +1,7 @@
 get '/' do
+  user = User.find(session[:user_id])
+
+  @t_user = Twitter::Client.new(oauth_token: user.oauth_token, oauth_token_secret: user.oauth_secret)
   erb :index
 end
 
