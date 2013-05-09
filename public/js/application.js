@@ -6,8 +6,12 @@ var ajaxCall = function(jobId) {
       url: '/status/' + jobId
     }).done(function(response){
     // show a spinner
-    clearInterval(timer);
-    alert("Your tweet was sent!");
+    console.log(response);
+    console.log(typeof response);
+    if (response === 'true') {
+      clearInterval(timer);
+      alert("Your tweet was sent!");
+    }
   });
   }, 1000);
 };

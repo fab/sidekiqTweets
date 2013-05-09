@@ -28,7 +28,7 @@ post '/tweet' do
 end
 
 get '/status/:job_id' do
-  job_is_complete(params[:job_id])
+  job_is_complete(params[:job_id]).to_json
 end
 
 # this command runs the siqekiq server
