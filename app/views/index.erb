@@ -1,18 +1,17 @@
 <div class="container">
   <h1>Tweet Now! 2: Multi-User</h1>
+  
 
   <% if session[:user_id] %>
     <div>
-      <p>
-        <strong>token:</strong> <%= User.find(session[:user_id]).oauth_token %><br>
-        <strong>secret:</strong> <%= User.find(session[:user_id]).oauth_secret %><br>
-      </p>
+      
       <p>
         <form method='post' action='/tweet'>
-          <input type='text' placeholder='Your Tweet' name='tweet'>
+          <input id='tweet_text' type='text' placeholder='Your Tweet' name='tweet'>
           <input type='submit' value='Send a Tweet'>
         </form>
       </p>
+      <div id="spinner"><img src='../images/loader.gif'></div>
       <p>
         <button><a href="/sign_out">Sign Out</a></button>
       </p>

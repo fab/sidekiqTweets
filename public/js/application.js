@@ -5,11 +5,12 @@ var ajaxCall = function(jobId) {
       type: 'get',
       url: '/status/' + jobId
     }).done(function(response){
-    // show a spinner
     console.log(response);
     console.log(typeof response);
     if (response === 'true') {
       clearInterval(timer);
+      $('#spinner').hide();
+      $('form').show();
       alert("Your tweet was sent!");
     }
   });
@@ -17,8 +18,12 @@ var ajaxCall = function(jobId) {
 };
 
 $(document).ready(function() {
+  $('#spinner').hide();
   $('form').on('submit', function(e){
     e.preventDefault();
+    $('form').hide();
+    $('#tweet_text').val('');
+    $('#spinner').show();
     var data = $(this).serialize();
     console.log(data);
     $.ajax({
